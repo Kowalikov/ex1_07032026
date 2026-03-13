@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Zad13 {
     static double najwiekszy_element(double[] n) {
         if (n.length==0) {
+            System.out.print("BŁĄD");
             return 0.0;
         } else if (n.length==1) {
             return n[0];
