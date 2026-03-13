@@ -8,6 +8,6 @@ public class Zad3 {
         String s0 = sc.next();
         String s1 = sc.next();
 
-        System.out.printf("%%%s %s%%%n", s0, s1);
+        System.out.printf("%%%s %s%%%n", s1, s0);
     }
 }
