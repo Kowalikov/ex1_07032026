@@ -12,7 +12,7 @@ public class Zad7 {
 
             // validaet n, m
             if ( n<0 || m<0) { // ujemny element (nie naturalny)
-                System.out.print("Rezultat: BŁĄD");
+                System.out.print("BŁĄD");
                 return;
             }
 
@@ -24,21 +24,21 @@ public class Zad7 {
             for (int i=0; i < n; i++) {
                 tab_1[i] = sc.nextInt();
                 if (tab_1[i]<0) {
-                    System.out.print("Rezultat: BŁĄD"); // ujemny element (nie naturalny)
+                    System.out.print("BŁĄD"); // ujemny element (nie naturalny)
                     return;
                 }
             }
             for (int i=0; i < m; i++) {
                 tab_2[i] = sc.nextInt();
                 if (tab_2[i]<0) {
-                    System.out.print("Rezultat: BŁĄD"); // ujemny element (nie naturalny)
+                    System.out.print("BŁĄD"); // ujemny element (nie naturalny)
                     return;
                 }
             }
 
             // consider n!=m, before iloczyn skalarny
             if ( n!=m ) {
-                System.out.print("Rezultat: BŁĄD."); // rózny rozmiar tablic
+                System.out.print("BŁĄD."); // rózny rozmiar tablic
                 return;
             }
 
@@ -50,7 +50,7 @@ public class Zad7 {
             System.out.print(product);
 
         } catch (Exception e) {
-            System.out.print("Rezultat: BŁĄD");
+            System.out.print("BŁĄD");
             return;
         }
     }
