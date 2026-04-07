@@ -18,10 +18,10 @@ public class Zad03Lab2 {
         private int year;
 
         public MyDate(int month, int day, int year) {
-            if ( month < 1 || month > 12) {
+            if ( month < 0 || month > 12) {
                 throw new IllegalArgumentException("Invalid month: " + month);
             }
-            if ( day < 1 || day > 31) {
+            if ( day < 0 || day > 31) {
                 throw new IllegalArgumentException("Invalid day: " + day);
             }
             if ( year < 1990 || year > 2050 ) {
@@ -33,13 +33,13 @@ public class Zad03Lab2 {
         }
 
         public void setMonth(int month) {
-            if ( month < 1 || month > 12) {
+            if ( month < 0 || month > 12) {
                 throw new IllegalArgumentException("Invalid month: " + month);
             }
             this.month = month;
         }
         public void setDay(int day) {
-            if ( day < 1 || day > 31) {
+            if ( day < 0 || day > 31) {
                 throw new IllegalArgumentException("Invalid day: " + day);
             }
             this.day = day;
