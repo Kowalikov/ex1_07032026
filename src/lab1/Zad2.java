@@ -1,3 +1,5 @@
+package lab1;
+
 public class Zad2 {
     public static void main(String[] args) {
         double pi_sq_root = Math.sqrt(Math.PI);

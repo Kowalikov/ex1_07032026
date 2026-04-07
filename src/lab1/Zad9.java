@@ -1,3 +1,5 @@
+package lab1;
+
 public class Zad9 {
     static boolean sprawdz_palindrom() {
         boolean palindrome_flag = true;
