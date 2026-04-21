@@ -47,6 +47,10 @@ public class Zad03Lab3 {
             System.out.println("Czy ma napęd: %b".formatted(this.czyNaped));
             System.out.println("Liczba ostrzy: %d".formatted(this.liczbaOstrzy));
         }
+
+        public void setLiczbaOstrzy(int liczbaOstrzy) {
+            this.liczbaOstrzy = liczbaOstrzy;
+        }
     }
 
     public static void main(String[] args) {

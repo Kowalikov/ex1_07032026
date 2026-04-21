@@ -124,10 +124,10 @@ public class Zad05Lab3 {
             if (rodzajSilnika != null) {
                 System.out.println("Rodzaj silnika: %s".formatted(this.rodzajSilnika));
             }
-            if (moc > 0) {
+            if (moc > 0.0) {
                 System.out.println("Moc: %.1f kW".formatted(this.moc));
             }
-            if (momentObrotowy > 0) {
+            if (momentObrotowy > 0.0) {
                 System.out.println("Moment obrotowy: %.1f Nm".formatted(this.momentObrotowy));
             }
 
@@ -161,7 +161,6 @@ public class Zad05Lab3 {
                 "Finale",
                 Typ.rower
         );
-
 
         s.wyswietl();
         System.out.println();

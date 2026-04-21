@@ -20,7 +20,10 @@ public class Zad01Lab3 {
         protected String nazwa;
         protected double pojemnoscSilnika;
         protected RodzajSilnika rodzajSilnika;
+
+        abstract void wyswietl();
     }
+
 
     public static void main(String[] args) {}
 }
