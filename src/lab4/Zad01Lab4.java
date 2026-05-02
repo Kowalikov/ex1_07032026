@@ -1,6 +1,12 @@
+/*
+Zadanie 1
+Zaimplementuj klasę Safe wraz z wymaganymi klasami Alarm i PinEvent, bez systemu rejestracji zdarzeń.
+Autor rozwiązania: Marek Kowalik
+*/
 package lab4;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import static java.lang.Thread.sleep;
 
@@ -112,6 +118,16 @@ public class Zad01Lab4 {
         public ArrayList<Alarm> alarms;
         private String pin;
 
+        Safe(ArrayList<Alarm> alarms, String pin) {
+            this.alarms = alarms;
+            this.pin = pin;
+        }
+
+        Safe(String pin) {
+            this.pin = pin;
+            this.alarms = new ArrayList<>();
+        }
+
         public void addAlarm(Alarm alarm) {
             this.alarms.add(alarm);
         }
@@ -121,7 +137,7 @@ public class Zad01Lab4 {
         }
 
         public void enterPin(String pin) {
-            if ( this.pin == pin) {
+            if (this.pin.equals(pin)) {
                 this.correctPin();
             } else {
                 this.wrongPin();
@@ -146,5 +162,4 @@ public class Zad01Lab4 {
             }
         }
     }
-
 }

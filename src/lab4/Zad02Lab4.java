@@ -1,3 +1,8 @@
+/*
+Zadanie 2
+Do implementacji z zadania 1 dodaj opisany system rejestracji zdarzeń wraz z przykładowymi implementacjami klas FileLogger oraz ConsoleLogger.
+Autor rozwiązania: Marek Kowalik
+*/
 package lab4;
 import java.io.File;
 import java.util.ArrayList;
@@ -39,8 +44,9 @@ public class Zad02Lab4 {
             this.logLevel = severity;
 
             try (FileWriter writer = new FileWriter("logger_output.txt", true)) {
-                writer.write("[%s] Event (Severity - %s): %s%n"
-                        .formatted(date, severity, message));
+                writer.write(
+                        "[%s] Event (Severity - %s) at %s: %s".formatted(date, severity, eventSource.eventDate, message)
+                );
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -63,15 +69,24 @@ public class Zad02Lab4 {
         public void LogMessage(Severity severity, EventSource eventSource, String message) {
             Date date = new Date();
             this.logLevel = severity;
-            System.out.println("[%s] Event (Severe - %s): %s ".formatted(date, severity, message));
+            System.out.printf("[%s] Event (Severe - %s) at %s: %s%n", date, severity, eventSource.eventDate, message);
         }
+
+        public static void main(String[] argv) {
+            ConsoleLogger logger = new ConsoleLogger();
+            PinEvent pinEvent = new PinEvent(null, null);
+
+            logger.LogMessage(Severity.fatal, pinEvent, "This is the message.");
+        }
+
     }
 
-    abstract static class EventSource { }
+    abstract static class EventSource {
+        public Date eventDate;
+    }
 
     static class PinEvent extends EventSource {
         private final Safe safe;
-        public Date eventDate;
 
         PinEvent(Safe safe, Date eventDate) {
             this.safe = safe;
@@ -99,12 +114,12 @@ public class Zad02Lab4 {
 
         @Override
         public void alarmTurnOn(PinEvent pinEvent) {
-            System.out.println("Rising alarm! WEEE-WOOO, WEEE-WOOO, WEEE-WOOO!");
+            logger.LogMessage(Severity.fatal, pinEvent, "Rising alarm! WEEE-WOOO, WEEE-WOOO, WEEE-WOOO!");
         }
 
         @Override
         public void alarmTurnOff(PinEvent pinEvent) {
-            System.out.println("Alarm off.");
+            logger.LogMessage(Severity.fatal, pinEvent, "Alarm off.");
         }
     }
 
@@ -117,12 +132,12 @@ public class Zad02Lab4 {
 
         @Override
         public void alarmTurnOn(PinEvent pinEvent) {
-            System.out.println("Dropping bars! ↓↓↓ ↓↓↓ ↓↓↓");
+            logger.LogMessage(Severity.fatal, pinEvent, "Dropping bars! ↓↓↓ ↓↓↓ ↓↓↓");
         }
 
         @Override
         public void alarmTurnOff(PinEvent pinEvent) {
-            System.out.println("Alarm off. Rising bars: ↑↑↑ ↑↑↑ ↑↑↑");
+            logger.LogMessage(Severity.fatal, pinEvent, "Alarm off. Rising bars: ↑↑↑ ↑↑↑ ↑↑↑");
         }
     }
 
@@ -135,12 +150,12 @@ public class Zad02Lab4 {
 
         @Override
         public void alarmTurnOn(PinEvent pinEvent) {
-            System.out.println("Releasing dogs! *woof, woof, woof*");
+            logger.LogMessage(Severity.fatal, pinEvent, "Releasing dogs! *woof, woof, woof*");
         }
 
         @Override
         public void alarmTurnOff(PinEvent pinEvent) {
-            System.out.println("Hiding dogs. <aggresively shaking doggy treats> *Come here!*");
+            logger.LogMessage(Severity.fatal, pinEvent, "Hiding dogs. <aggresively shaking doggy treats> *Come here!*");
         }
     }
 
@@ -153,24 +168,34 @@ public class Zad02Lab4 {
 
         @Override
         public void alarmTurnOn(PinEvent pinEvent) {
-            System.out.println("Calling 911 in 5s.");
+            logger.LogMessage(Severity.fatal, pinEvent, "Calling 911 in 5s.");
             try {
                 sleep(5000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Calling 911 now.");
+            logger.LogMessage(Severity.fatal, pinEvent, "Calling 911 now.");
         }
 
         @Override
         public void alarmTurnOff(PinEvent pinEvent) {
-            System.out.println("Calling 911 to cancel previous call.");
+            logger.LogMessage(Severity.fatal, pinEvent, "Calling 911 to cancel previous call.");
         }
     }
 
     class Safe {
         public ArrayList<Alarm> alarms;
         private String pin;
+
+        Safe(ArrayList<Alarm> alarms, String pin) {
+            this.alarms = alarms;
+            this.pin = pin;
+        }
+
+        Safe(String pin) {
+            this.pin = pin;
+            this.alarms = new ArrayList<>();
+        }
 
         public void addAlarm(Alarm alarm) {
             this.alarms.add(alarm);
@@ -181,7 +206,7 @@ public class Zad02Lab4 {
         }
 
         public void enterPin(String pin) {
-            if (this.pin == pin) {
+            if (this.pin.equals(pin)) {
                 this.correctPin();
             } else {
                 this.wrongPin();
