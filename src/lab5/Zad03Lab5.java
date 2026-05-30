@@ -7,9 +7,9 @@ package lab5;
 
 public class Zad03Lab5 {
     static class MyTriangle {
-        private Zad01Lab5.MyPoint v1 = new Zad01Lab5.MyPoint(0,0);
-        private Zad01Lab5.MyPoint v2 = new Zad01Lab5.MyPoint(0,1);
-        private Zad01Lab5.MyPoint v3 = new Zad01Lab5.MyPoint(1,0);
+        private Zad01Lab5.MyPoint v1;
+        private Zad01Lab5.MyPoint v2;
+        private Zad01Lab5.MyPoint v3;
 
         public MyTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
             this.v1.setXY(x1, y1);
